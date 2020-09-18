@@ -4,6 +4,8 @@ import VueRouter from "vue-router";
 import Home from "../pages/Home.vue";
 // @ts-ignore
 import Profile from "../pages/Profile.vue";
+// @ts-ignore
+import BlogDetails from "../pages/BlogDetails.vue"
 import { authGuard } from "@bcwdev/auth0-vue";
 
 Vue.use(VueRouter);
@@ -20,6 +22,12 @@ const routes = [
     component: Profile,
     beforeEnter: authGuard,
   },
+  {
+    path: "/blog/:blogId",
+    name: "blog-details",
+    component: BlogDetails,
+    beforeEnter: authGuard,
+  }
 ];
 
 const router = new VueRouter({

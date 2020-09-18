@@ -1,9 +1,9 @@
 <template>
   <div class="home container-fluid">
-    <div class="row text-center">
+    <div class="row">
       <div class="col-12">
-        <h1 class="text-primary text-center">Welcome</h1>
-        <form class="form-inline" @submit.prevent="createPost">
+        <h3 class="text-primary my-2">Create a Post...</h3>
+        <form class="form-inline" @submit.prevent="createBlog">
         <div class="form-group">
           <input
               type="text"
@@ -26,6 +26,7 @@
         </form>
       </div>
     </div>
+    <br>
     <div class="row">
       <blogComponent v-for="blog in blogs" :key="blog.id" :blogProp="blog" />
     </div>
@@ -43,6 +44,11 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getAllBlogs")
+  },
+  methods: {
+    createBlog() {
+      this.$store.dispatch("createBlog", this.newBlog)
+    }
   },
   computed: {
     blogs() {
