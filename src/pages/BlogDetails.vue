@@ -6,7 +6,12 @@
         <img :src="blog.imgUrl" alt="">
         <p class="text-secondary">Created By: {{blog.creatorEmail}}</p>
         <p class="text-primary">{{blog.body}}</p>
-        <comment-component/>
+        <hr>
+         <form action="" @submit.prevent="addComment">
+      <input type="text" class="form-control my-2" v-model="newComment.body" placeholder="Add a comment..."/>
+      <button class="btn btn-outline-primary" type="submit">Post Comment</button>
+    </form>
+        <comment-component v-for="comment in activeComments" :key="comment.id" :commentProp = comment />
       </div>
     </div>
   </div>
@@ -19,7 +24,8 @@ export default {
   name: 'blog-details',
   data(){
     return {
-      blogData: {}, editToggle: false
+      blogData: {}, editToggle: false,
+      newComment: {}
     }
   },
   mounted(){
@@ -30,6 +36,9 @@ export default {
     blog(){
       return this.$store.state.activeBlog;
     },
+    activeComments(){
+      return this.$store.state.activeComments
+    },
     isCreator(){
       return this.$store.state.profile.email == this.post.creatorEmail
     }
@@ -39,7 +48,14 @@ export default {
       this.blogData.id = this.$route.params.blogId;
       this.$store.dispatch("editPost", this.blogData);
       this.editToggle = false;
-    }
+    },
+    addComment(){
+      let payload = {
+        blog: this.$route.params.blogId,
+        body: this.newComment.body
+      }
+      this.$store.dispatch("addComment", payload)
+    },
   },
   components:{
     CommentComponent
