@@ -8,12 +8,41 @@
             aria-hidden="true"
             @click="editToggle = !editToggle"
             v-if="isCreator"
-          >Edit</button>
-          {{blog.title}}
+          >Edit Blog</button>
+          <button class="btn btn-outline-danger" 
+            @click="deleteBlog"
+            v-if="isCreator"
+            >Delete Blog</button>
         </p>
         <img :src="blog.imgUrl" alt="">
         <p class="text-secondary">Created By: {{blog.creatorEmail}}</p>
         <p class="text-primary">{{blog.body}}</p>
+        <form class="form d-flex flex-column align-items-center" @submit.prevent="editBlog" v-if="editToggle">
+          <div class="col-6 d-flex justify-content-center">
+          <input
+            type="text"
+            class="form-control my-1"
+            placeholder="New Img"
+            aria-describedby="helpId"
+            v-model="blogData.imgUrl"
+          />
+          </div>
+          <input
+            type="text"
+            class="form-control my-1"
+            placeholder="New Title"
+            aria-describedby="helpId"
+            v-model="blogData.title"
+          />
+          <input
+            type="text"
+            class="form-control my-1"
+            placeholder="New Body"
+            aria-describedby="helpId"
+            v-model="blogData.body"
+          />
+          <button type="submit" class="btn btn-warning">Post</button>
+        </form>
         <hr>
          <form action="" @submit.prevent="addComment">
       <input type="text" class="form-control m-auto commentInput" v-model="newComment.body" placeholder="Add a comment..."/>
@@ -65,6 +94,10 @@ export default {
       }
       this.$store.dispatch("addComment", payload)
     },
+    deleteBlog(){
+      this.blogData.id = this.$route.params.blogId;
+      this.$store.dispatch("deleteBlog", this.blogData.id)
+    }
   },
   components:{
     CommentComponent
@@ -74,7 +107,7 @@ export default {
 
 
 <style scoped>
-.commentInput{
+input{
   max-width: 30rem;
 }
 </style>

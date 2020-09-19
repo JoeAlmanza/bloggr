@@ -24,6 +24,9 @@ export default new Vuex.Store({
     },
     setComments(state, comments) {
       state.activeComments = comments
+    },
+    deleteBlog(state, blog) {
+      state.blogs = blog
     }
   },
   actions: {
@@ -46,7 +49,9 @@ export default new Vuex.Store({
     async createBlog({commit}, blogData) {
       try {
         let res = await api.post("blogs", blogData)
+        console.log(res);
         commit("setBlogs", [...this.state.blogs, res.data])
+        router.push({path: "/blog/" + res.data.id})
       } catch (error) {
         console.error(error);
       }
@@ -70,7 +75,6 @@ export default new Vuex.Store({
     },
     async getComments({commit}, blogId){
       try {
-        debugger
         let res = await api.get("blogs/" + blogId + "/comments")
         commit("setComments", res.data)
       } catch (error) {
@@ -80,8 +84,18 @@ export default new Vuex.Store({
     async addComment({commit, dispatch}, commentData) {
       try {
         let res = await api.post("comments" , commentData)
-        console.log(res)
-        dispatch("getActiveComment", commentData.post)
+        console.log(res);
+        dispatch("getComments", res.data.blog)
+        // router.push({path: "/blog/" + res.data.blog})
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async deleteBlog({commit}, blogId){
+      try {
+        await api.delete("blogs/" + blogId)
+        this.dispatch("deleteBlog", blogId)
+        router.push({name: 'Home'})
       } catch (error) {
         console.error(error);
       }
