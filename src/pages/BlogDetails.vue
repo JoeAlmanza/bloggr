@@ -8,8 +8,8 @@
         <p class="text-primary">{{blog.body}}</p>
         <hr>
          <form action="" @submit.prevent="addComment">
-      <input type="text" class="form-control my-2" v-model="newComment.body" placeholder="Add a comment..."/>
-      <button class="btn btn-outline-primary" type="submit">Post Comment</button>
+      <input type="text" class="form-control m-auto commentInput" v-model="newComment.body" placeholder="Add a comment..."/>
+      <button class="btn btn-outline-primary my-2" type="submit">Post Comment</button>
     </form>
         <comment-component v-for="comment in activeComments" :key="comment.id" :commentProp = comment />
       </div>
@@ -65,5 +65,7 @@ export default {
 
 
 <style scoped>
-
+.commentInput{
+  max-width: 30rem;
+}
 </style>

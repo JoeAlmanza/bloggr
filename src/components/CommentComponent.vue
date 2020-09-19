@@ -1,9 +1,9 @@
 <template>
   <div class="comment-component row justify-content-center">
-    <div class="col-12">
+    <div class="col-12 d-flex mb-2 justify-content-center">
       <div class="card">
         <div class="card-body">
-          <p>{{commentProp.body}}</p>
+          <p class="m-0"><u>{{commentProp.creator.name}}</u> says... {{commentProp.body}}</p>
         </div>
       </div>
     </div>
@@ -33,5 +33,7 @@ export default {
 
 
 <style scoped>
-
+.card-body{
+  padding: 13px;
+}
 </style>

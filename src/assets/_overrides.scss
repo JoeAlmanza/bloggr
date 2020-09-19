@@ -4,3 +4,19 @@
   border-color: darken($color: $primary, $amount: 10);
   border-width: medium;
 }
+
+body{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+main{
+  flex-grow: 1;
+  min-width: 100%;
+}
+
+footer{
+  min-width: 100%;
+}
