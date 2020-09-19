@@ -70,8 +70,8 @@ export default new Vuex.Store({
     },
     async getComments({commit}, blogId){
       try {
+        debugger
         let res = await api.get("blogs/" + blogId + "/comments")
-        console.log(res);
         commit("setComments", res.data)
       } catch (error) {
         console.error(error);

@@ -3,6 +3,14 @@
     <div class="row text-center">
       <div class="col-12">
         <h3 class="text-info my-4">{{blog.title}}</h3>
+        <p>
+          <button class="btn btn-outline-warning"
+            aria-hidden="true"
+            @click="editToggle = !editToggle"
+            v-if="isCreator"
+          >Edit</button>
+          {{blog.title}}
+        </p>
         <img :src="blog.imgUrl" alt="">
         <p class="text-secondary">Created By: {{blog.creatorEmail}}</p>
         <p class="text-primary">{{blog.body}}</p>
@@ -40,13 +48,14 @@ export default {
       return this.$store.state.activeComments
     },
     isCreator(){
-      return this.$store.state.profile.email == this.post.creatorEmail
+      console.log(this.blog.creatorEmail);
+      return this.$store.state.profile.email == this.blog.creatorEmail
     }
   },
   methods:{
     editBlog(){
       this.blogData.id = this.$route.params.blogId;
-      this.$store.dispatch("editPost", this.blogData);
+      this.$store.dispatch("editBlog", this.blogData);
       this.editToggle = false;
     },
     addComment(){
