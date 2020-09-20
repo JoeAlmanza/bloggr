@@ -3,7 +3,24 @@
     <div class="col-12 d-flex mb-2 justify-content-center">
       <div class="card">
         <div class="card-body">
-          <p class="m-0"><u>{{commentProp.creator.name}}</u>: {{commentProp.body}} <i class="fa fa-times-circle-o" aria-hidden="" @click="deleteComment" v-if="commentProp.creator.name == this.$auth.userInfo.name"></i></p>
+          <p class="m-0"><u>{{commentProp.creatorEmail}}</u>: {{commentProp.body}}   <i class="fa fa-times-circle-o" aria-hidden="" @click="deleteComment" v-if="commentProp.creatorEmail == this.$auth.userInfo.name"></i>  <i
+            class="fa fa-pencil"
+            aria-hidden="true"
+            @click="editToggle = !editToggle"
+            v-if="commentProp.creatorEmail == this.$auth.userInfo.name"
+          ></i></p>
+          <form class="form d-flex flex-column align-items-center" @submit.prevent="editComment" v-if="editToggle">
+          <div class="col-6 d-flex justify-content-center">
+          <input
+            type="text"
+            class="form-control my-1"
+            placeholder="Edit Comment..."
+            aria-describedby="helpId"
+            v-model="commentData.body"
+          />
+          </div>
+          <button type="submit" class="btn btn-warning">Post</button>
+        </form>
         </div>
       </div>
     </div>
@@ -17,7 +34,7 @@ export default {
   props: ["commentProp"],
   data(){
     return {
-      newComment: {}
+      commentData: {}, editToggle: false,
     }
   },
   computed:{
@@ -25,17 +42,18 @@ export default {
         return this.$store.state.activeBlog
       },
   },
+  mounted(){
+    this.$store.dispatch("getComments", this.$route.params.blogId)
+  },
   methods:{ 
     deleteComment(){
-      let payload = {
-        blog: this.$route.params.blogId,
-        body: this.commentProp.body,
-        creatorEmail: this.commentProp.creatorEmail,
-        id: this.commentProp.id
-      }
-      this.$store.dispatch("deleteComment", payload)
-      console.log(this.$auth.userInfo);
-      console.log(this.commentProp);
+      this.$store.dispatch("deleteComment", this.commentProp)
+    },
+    editComment(){
+      this.commentData.id = this.commentProp.id;
+      this.$store.dispatch("editComment", this.commentData)
+      this.commentData = {}
+      this.editToggle = false
     }
   },
   components:{}

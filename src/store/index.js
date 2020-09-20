@@ -22,8 +22,8 @@ export default new Vuex.Store({
     setActiveBlog(state, blog) {
       state.activeBlog = blog
     },
-    setComments(state, comments) {
-      state.activeComments = comments
+    setComments(state, comment) {
+      state.activeComments = comment
     },
     deleteBlog(state, blog) {
       state.blogs = blog
@@ -71,7 +71,17 @@ export default new Vuex.Store({
     async editBlog({commit}, blogData){
       try {
         let res = await api.put("blogs/" + blogData.id, blogData)
+        console.log(res);
         commit("setActiveBlog", res.data)
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async deleteBlog({commit}, blogId){
+      try {
+        await api.delete("blogs/" + blogId)
+        commit("deleteBlog", blogId)
+        router.push({name: 'Home'})
       } catch (error) {
         console.error(error);
       }
@@ -93,20 +103,21 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
-    async deleteBlog({commit}, blogId){
+    async editComment({commit, dispatch}, commentData) {
       try {
-        await api.delete("blogs/" + blogId)
-        commit("deleteBlog", blogId)
-        router.push({name: 'Home'})
+        console.log(commentData);
+        let res = await api.put("comments/" + commentData.id, commentData)
+        console.log(res);
+        dispatch("getComments", res.data.blog)
       } catch (error) {
         console.error(error);
       }
     },
-    async deleteComment({commit, dispatch}, commentProp){
+    async deleteComment({commit, dispatch}, commentData){
       try {
-        await api.delete("comments/" + commentProp.id)
-        commit("deleteComment", commentProp.id)
-        dispatch("getComments", commentProp.blog)
+        await api.delete("comments/" + commentData.id)
+        commit("deleteComment", commentData.id)
+        dispatch("getComments", commentData.blog)
       } catch (error) {
         console.error(error);
       }

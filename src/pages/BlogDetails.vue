@@ -88,6 +88,7 @@ export default {
   },
   methods:{
     editBlog(){
+      console.log(this.blogData);
       this.blogData.id = this.$route.params.blogId;
       this.$store.dispatch("editBlog", this.blogData);
       this.editToggle = false;
