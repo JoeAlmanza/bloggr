@@ -33,7 +33,7 @@ export default new Vuex.Store({
     async getProfile({ commit }) {
       try {
         let res = await api.get("profile");
-        commit("setProfile", res.data);
+        commit("setProfile", res.data)
       } catch (error) {
         console.error(error);
       }
@@ -86,7 +86,6 @@ export default new Vuex.Store({
         let res = await api.post("comments" , commentData)
         console.log(res);
         dispatch("getComments", res.data.blog)
-        // router.push({path: "/blog/" + res.data.blog})
       } catch (error) {
         console.error(error);
       }

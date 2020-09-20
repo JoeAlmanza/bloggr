@@ -50,6 +50,7 @@ export default {
   methods: {
     createBlog() {
       this.$store.dispatch("createBlog", this.newBlog)
+      this.newBlog = {}
     }
   },
   computed: {
