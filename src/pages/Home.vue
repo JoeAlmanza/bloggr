@@ -1,7 +1,7 @@
 <template>
   <div class="home container-fluid p-4">
     <div class="row">
-    <div class="col-5">
+    <div class="col-5" v-if="this.$auth.isAuthenticated">
       <h5 class="text-primary my-2">Create a Post...</h5>
       <form class="form row m-0" @submit.prevent="createBlog">
       <div class="col-6 form-group p-0">

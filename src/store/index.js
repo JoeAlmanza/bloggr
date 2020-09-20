@@ -52,7 +52,6 @@ export default new Vuex.Store({
     async createBlog({commit}, blogData) {
       try {
         let res = await api.post("blogs", blogData)
-        console.log(res);
         commit("setBlogs", [...this.state.blogs, res.data])
         router.push({path: "/blog/" + res.data.id})
       } catch (error) {
@@ -71,7 +70,6 @@ export default new Vuex.Store({
     async editBlog({commit}, blogData){
       try {
         let res = await api.put("blogs/" + blogData.id, blogData)
-        console.log(res);
         commit("setActiveBlog", res.data)
       } catch (error) {
         console.error(error);
@@ -97,7 +95,6 @@ export default new Vuex.Store({
     async addComment({commit, dispatch}, commentData) {
       try {
         let res = await api.post("comments" , commentData)
-        console.log(res);
         dispatch("getComments", res.data.blog)
       } catch (error) {
         console.error(error);
@@ -107,7 +104,6 @@ export default new Vuex.Store({
       try {
         console.log(commentData);
         let res = await api.put("comments/" + commentData.id, commentData)
-        console.log(res);
         dispatch("getComments", res.data.blog)
       } catch (error) {
         console.error(error);

@@ -1,10 +1,18 @@
 <template>
   <div class="blog-details container-fluid">
-    <div class="row text-center">
+    <div class="row">
       <div class="col-12">
-        <h3 class="text-info my-4">{{blog.title}}</h3>
+        <h5 class="mb-0"><i
+            class="fa fa-pencil"
+            aria-hidden="true"
+            @click="editToggle = !editToggle"
+            v-if="this.blog.creatorEmail == this.$auth.userInfo.name"
+          ></i>
+          <i class="fa fa-times-circle-o" aria-hidden="true" @click="deleteBlog" v-if="this.blog.creatorEmail == this.$auth.userInfo.name"></i></h5>
+        <h3 class="text-info m-0">{{blog.title}} </h3> 
         <p>
-          <button class="btn btn-outline-warning"
+          
+          <!-- <button class="btn btn-outline-warning"
             aria-hidden="true"
             @click="editToggle = !editToggle"
             v-if="isCreator"
@@ -12,13 +20,12 @@
           <button class="btn btn-outline-danger" 
             @click="deleteBlog"
             v-if="isCreator"
-            >Delete Blog</button>
+            >Delete Blog</button> -->
         </p>
         <img :src="blog.imgUrl" alt="">
         <p class="text-secondary">Created By: {{blog.creatorEmail}}</p>
         <p class="text-primary">{{blog.body}}</p>
         <form class="form d-flex flex-column align-items-center" @submit.prevent="editBlog" v-if="editToggle">
-          <div class="col-6 d-flex justify-content-center">
           <input
             type="text"
             class="form-control my-1"
@@ -26,7 +33,6 @@
             aria-describedby="helpId"
             v-model="blogData.imgUrl"
           />
-          </div>
           <input
             type="text"
             class="form-control my-1"
@@ -41,20 +47,28 @@
             aria-describedby="helpId"
             v-model="blogData.body"
           />
-          <button type="submit" class="btn btn-warning">Post</button>
+          <button type="submit" class="btn btn-outline-warning">Post</button>
         </form>
+
         <hr>
-         <form action="" @submit.prevent="addComment">
-      <input type="text" class="form-control m-auto commentInput" v-model="newComment.body" placeholder="Add a comment..."/>
-      <button class="btn btn-outline-primary my-2" type="submit">Post Comment</button>
-    </form>
-        <button class="btn btn-outline-warning my-3"
-          aria-hidden="true"
-          @click="commentToggle = !commentToggle"
-        >Comments  </button>
-      <div  v-if="commentToggle">
-        <comment-component v-for="comment in activeComments" :key="comment.id" :commentProp = comment />
-      </div>
+
+        <div class="row">
+          <div class="col-12 d-flex flex-column align-items-baseline">
+            <form action="" @submit.prevent="addComment">
+              <input type="text" class="form-control m-auto commentInput" v-model="newComment.body" placeholder="Add a comment..."/>
+              <button class="btn btn-outline-primary my-2" type="submit">Post Comment</button>
+            </form>
+            <button class="btn btn-outline-warning my-3"
+              aria-hidden="true"
+              @click="commentToggle = !commentToggle"
+              >Comments - {{activeComments.length}}</button>
+        <div  v-if="commentToggle">
+          <comment-component v-for="comment in activeComments" :key="comment.id" :commentProp = comment />
+        </div>
+          
+        </div>
+          </div>
+
       </div>
     </div>
   </div>
@@ -92,6 +106,7 @@ export default {
       this.blogData.id = this.$route.params.blogId;
       this.$store.dispatch("editBlog", this.blogData);
       this.editToggle = false;
+      this.blogData = {}
     },
     addComment(){
       let payload = {
@@ -116,6 +131,9 @@ export default {
 
 <style scoped>
 input{
-  max-width: 30rem;
+  width: 20rem;
+}
+.btn{
+  max-width: 8rem;
 }
 </style>
