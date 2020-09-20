@@ -27,5 +27,16 @@ export default {
 
 
 <style scoped>
+.card{
+  border-style: solid;
+  border-color: #20c997;
+}
 
+.card:hover{
+ transform: translateX(1px);
+}
+
+.card:active{
+  transform: translateY(1px);
+}
 </style>

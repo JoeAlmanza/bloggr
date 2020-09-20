@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <img alt="Vue logo" src="../assets/logo.png" style="transform: rotate(-90deg);width: 25px;" />
@@ -14,7 +14,7 @@
       </div>
     </router-link>
     <button
-      class="navbar-toggler"
+      class="navbar-toggler bg-primary"
       type="button"
       data-toggle="collapse"
       data-target="#navbarText"
@@ -27,14 +27,14 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item" :class="{ active: $route.name == 'Home' }">
-          <router-link :to="{ name: 'Home' }" class="nav-link text-primary">Home</router-link>
+          <h5><router-link :to="{ name: 'Home' }" class="nav-link text-primary">Home</router-link></h5>
         </li>
         <li
           class="nav-item"
           v-if="$auth.isAuthenticated"
           :class="{ active: $route.name == 'Profile' }"
         >
-          <router-link class="nav-link text-primary" :to="{ name: 'Profile' }">Profile</router-link>
+          <h5><router-link class="nav-link text-primary" :to="{ name: 'Profile' }">Profile</router-link></h5>
         </li>
       </ul>
       <span class="navbar-text">

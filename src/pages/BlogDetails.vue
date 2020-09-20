@@ -51,7 +51,7 @@
         <button class="btn btn-outline-warning my-3"
           aria-hidden="true"
           @click="commentToggle = !commentToggle"
-        >Comments</button>
+        >Comments  </button>
       <div  v-if="commentToggle">
         <comment-component v-for="comment in activeComments" :key="comment.id" :commentProp = comment />
       </div>
@@ -71,21 +71,20 @@ export default {
       newComment: {}
     }
   },
+    computed:{
+      blog(){
+        return this.$store.state.activeBlog
+      },
+      activeComments(){
+        return this.$store.state.activeComments
+      },
+      isCreator(){
+        return this.$store.state.profile.email == this.blog.creatorEmail
+      }
+    },
   mounted(){
     this.$store.dispatch("getActiveBlog", this.$route.params.blogId),
     this.$store.dispatch("getComments", this.$route.params.blogId)
-  },
-  computed:{
-    blog(){
-      return this.$store.state.activeBlog;
-    },
-    activeComments(){
-      return this.$store.state.activeComments
-    },
-    isCreator(){
-      console.log(this.blog.creatorEmail);
-      return this.$store.state.profile.email == this.blog.creatorEmail
-    }
   },
   methods:{
     editBlog(){
@@ -104,7 +103,8 @@ export default {
     deleteBlog(){
       this.blogData.id = this.$route.params.blogId;
       this.$store.dispatch("deleteBlog", this.blogData.id)
-    }
+    },
+    
   },
   components:{
     CommentComponent
