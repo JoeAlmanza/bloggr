@@ -1,5 +1,5 @@
 <template>
-  <div class="home container-fluid">
+  <div class="home container-fluid p-4">
     <div class="row">
     <div class="col-5">
       <h5 class="text-primary my-2">Create a Post...</h5>
@@ -9,7 +9,16 @@
             type="text"
             v-model="newBlog.title"
             class="form-control"
-            placeholder="Blog Title"
+            placeholder="Title..."
+            aria-describedby="helpId"
+          />
+      </div>
+      <div class="col-12 form-group p-0">
+        <input
+            type="url"
+            class="form-control"
+            v-model="newBlog.imgUrl"
+            placeholder="Image URL..."
             aria-describedby="helpId"
           />
       </div>
@@ -18,7 +27,7 @@
             type="text"
             class="form-control"
             v-model="newBlog.body"
-            placeholder="Blog Body"
+            placeholder="Body..."
             aria-describedby="helpId"
           />
       </div>

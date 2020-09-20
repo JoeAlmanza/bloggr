@@ -3,7 +3,7 @@
     <div class="col-12 d-flex mb-2 justify-content-center">
       <div class="card">
         <div class="card-body">
-          <p class="m-0"><u>{{commentProp.creator.name}}</u> says... {{commentProp.body}}</p>
+          <p class="m-0"><u>{{commentProp.creator.name}}</u>: {{commentProp.body}}</p>
         </div>
       </div>
     </div>

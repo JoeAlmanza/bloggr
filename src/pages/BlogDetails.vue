@@ -48,7 +48,13 @@
       <input type="text" class="form-control m-auto commentInput" v-model="newComment.body" placeholder="Add a comment..."/>
       <button class="btn btn-outline-primary my-2" type="submit">Post Comment</button>
     </form>
+        <button class="btn btn-outline-warning my-3"
+          aria-hidden="true"
+          @click="commentToggle = !commentToggle"
+        >Comments</button>
+      <div  v-if="commentToggle">
         <comment-component v-for="comment in activeComments" :key="comment.id" :commentProp = comment />
+      </div>
       </div>
     </div>
   </div>
@@ -61,7 +67,7 @@ export default {
   name: 'blog-details',
   data(){
     return {
-      blogData: {}, editToggle: false,
+      blogData: {}, editToggle: false, commentToggle: false,
       newComment: {}
     }
   },
