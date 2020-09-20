@@ -27,18 +27,18 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item" :class="{ active: $route.name == 'Home' }">
-          <h5><router-link :to="{ name: 'Home' }" class="nav-link text-primary">Home</router-link></h5>
+          <h5><router-link :to="{ name: 'Home' }" class="nav-link text-light">Home</router-link></h5>
         </li>
         <li
           class="nav-item"
           v-if="$auth.isAuthenticated"
           :class="{ active: $route.name == 'Profile' }"
         >
-          <h5><router-link class="nav-link text-primary" :to="{ name: 'Profile' }">Profile</router-link></h5>
+          <h5><router-link class="nav-link text-light" :to="{ name: 'Profile' }">Profile</router-link></h5>
         </li>
       </ul>
       <span class="navbar-text">
-        <button class="btn btn-success" @click="login" v-if="!$auth.isAuthenticated">Login</button>
+        <button class="btn btn-primary" @click="login" v-if="!$auth.isAuthenticated">Login</button>
         <button class="btn btn-danger" @click="logout" v-else>logout</button>
       </span>
     </div>

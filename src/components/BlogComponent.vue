@@ -3,7 +3,7 @@
     <router-link class="card my-2" :to="{name:'blog-details', params:{blogId: blogProp.id}}">
       <div class="card text-light">
         <div class="card-body">
-          <h4 class="card-title text-info">{{blogProp.title}}</h4>
+          <h5 class="card-title text-light">{{blogProp.title}}</h5>
           <p class="text-primary">By: {{blogProp.creatorEmail}}</p>
         </div>
       </div>
@@ -29,7 +29,8 @@ export default {
 <style scoped>
 .card{
   border-style: solid;
-  border-color: #20c997;
+  border-color: #00ADB5;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .card:hover{

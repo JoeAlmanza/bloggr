@@ -5,37 +5,37 @@
 // Color system
 //
 
-$white:    #fff !default;
+$white:    #EEEEEE !default;
 $gray-100: #f8f9fa !default;
 $gray-200: #e9ecef !default;
 $gray-300: #dee2e6 !default;
 $gray-400: #adafae !default;
 $gray-500: #888 !default;
-$gray-600: #555 !default;
+$gray-600: #393E46 !default;
 $gray-700: #282828 !default;
 $gray-800: #222 !default;
 $gray-900: #212529 !default;
-$black:    #000 !default;
+$black:    #1b262c !default;
 
-$blue:    #2a9fd6 !default;
+$blue:    #407088 !default;
 $indigo:  #6610f2 !default;
 $purple:  #6f42c1 !default;
 $pink:    #e83e8c !default;
-$red:     #cc0000 !default;
-$orange:  #fd7e14 !default;
+$red:     #ae4d4d !default;
+$orange:  #fdcb9e !default;
 $yellow:  #d6cf61 !default;
-$green:   #77b300 !default;
-$teal:    #20c997 !default;
+$green:   #4D7917 !default;
+$teal:    #00ADB5 !default;
 $cyan:    #9933cc !default;
 
 $primary:       $blue !default;
-$secondary:     $gray-300 !default;
+$secondary:     $gray-600 !default;
 $success:       $green !default;
 $info:          $teal !default;
-$warning:       $yellow !default;
+$warning:       $orange !default;
 $danger:        $red !default;
-$light:         $gray-300 !default;
-$dark:          $gray-700 !default;
+$light:         $white !default;
+$dark:          $black !default;
 
 $yiq-contrasted-threshold:  175 !default;
 

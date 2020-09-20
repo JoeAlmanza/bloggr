@@ -26,7 +26,6 @@ const routes = [
     path: "/blog/:blogId",
     name: "blog-details",
     component: BlogDetails,
-    beforeEnter: authGuard,
   }
 ];
 
