@@ -19,7 +19,7 @@
             v-model="commentData.body"
           />
           </div>
-          <button type="submit" class="btn btn-warning">Post</button>
+          <button type="submit" class="btn btn-success">Post</button>
         </form>
         </div>
       </div>

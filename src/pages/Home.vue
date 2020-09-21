@@ -2,7 +2,7 @@
   <div class="home container-fluid p-4">
     <div class="row">
     <div class="col-5" v-if="this.$auth.isAuthenticated">
-      <h5 class="text-primary my-2">Create a Post...</h5>
+      <h5 class="text-info my-2">Create a Post...</h5>
       <form class="form row m-0" @submit.prevent="createBlog">
       <div class="col-6 form-group p-0">
         <input
@@ -38,6 +38,7 @@
     </div>
     </div>
     <br>
+    <h5 class="mt-4 text-info mb-0">Posted blogs:</h5>
     <div class="row">
       <blogComponent v-for="blog in blogs" :key="blog.id" :blogProp="blog" />
     </div>

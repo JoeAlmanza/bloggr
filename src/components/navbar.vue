@@ -1,5 +1,6 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light">
+  <nav class="navbar navbar-expand-lg navbar-light navbar-fixed-top">
+    <div class="container-fluid">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <img alt="Vue logo" src="../assets/logo.png" style="transform: rotate(-90deg);width: 25px;" />
@@ -10,7 +11,7 @@
         />
       </div>
       <div>
-        <h3 class="text-info">loggr</h3>
+        <h3 class="text-light">loggrrr</h3>
       </div>
     </router-link>
     <button
@@ -27,20 +28,21 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item" :class="{ active: $route.name == 'Home' }">
-          <h5><router-link :to="{ name: 'Home' }" class="nav-link text-light">Home</router-link></h5>
+          <h5><router-link :to="{ name: 'Home' }" class="nav-link text-primary">Home</router-link></h5>
         </li>
         <li
           class="nav-item"
           v-if="$auth.isAuthenticated"
           :class="{ active: $route.name == 'Profile' }"
         >
-          <h5><router-link class="nav-link text-light" :to="{ name: 'Profile' }">Profile</router-link></h5>
+          <h5><router-link class="nav-link text-primary" :to="{ name: 'Profile' }">Profile</router-link></h5>
         </li>
       </ul>
       <span class="navbar-text">
         <button class="btn btn-primary" @click="login" v-if="!$auth.isAuthenticated">Login</button>
-        <button class="btn btn-danger" @click="logout" v-else>logout</button>
+        <button class="btn btn-danger" @click="logout" v-else>Logout</button>
       </span>
+    </div>
     </div>
   </nav>
 </template>
