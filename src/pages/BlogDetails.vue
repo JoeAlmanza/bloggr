@@ -11,7 +11,7 @@
           <i class="fa fa-times-circle-o" aria-hidden="true" @click="deleteBlog" v-if="this.blog.creatorEmail == this.$auth.userInfo.name"></i></h5>
         <h3 class="text-info m-0">{{blog.title}} </h3> 
         <img class="my-3" :src="blog.imgUrl" alt="">
-        <p class="text-success">By: {{blog.creatorEmail}}</p>
+        <p class="text-info">By: {{blog.creatorEmail}}</p>
         <p class="text-light">{{blog.body}}</p>
         <form class="form d-flex flex-column align-items-center" @submit.prevent="editBlog" v-if="editToggle">
           <input
@@ -35,22 +35,22 @@
             aria-describedby="helpId"
             v-model="blogData.body"
           />
-          <button type="submit" class="btn btn-outline-warning">Post</button>
+          <button type="submit" class="btn btn-primary">Post</button>
         </form>
 
         <hr>
 
         <div class="row">
-          <div class="col-12 d-flex flex-column align-items-baseline">
-            <form class="card flex-column align-items-baseline p-3 mt-3" action="" @submit.prevent="addComment" v-if="this.$auth.isAuthenticated">
+          <div class="col-12 d-flex flex-column align-items-center">
+            <form class="card flex-column align-items-center p-3 mt-3" action="" @submit.prevent="addComment" v-if="this.$auth.isAuthenticated">
               <div class="form-group">
                 <input type="text" class="form-group m-auto commentInput" v-model="newComment.body" placeholder="Add a comment..."/>
               </div>
-              <button class="btn btn-outline-success" type="submit">Post Comment</button>
+              <button class="btn btn-primary" type="submit">Post Comment</button>
             </form>
 
-            <div class="card p-3 mt-2">
-            <button class="btn btn-outline-info"
+            <div class="card p-3 mt-2 align-items-center">
+            <button class="btn btn-info"
               aria-hidden="true"
               @click="commentToggle = !commentToggle"
               >Comments - {{activeComments.length}}</button>
@@ -129,9 +129,9 @@ img{
   max-width: 37vh;
 }
 .card{
-  background-color: rgb(57, 62, 70, .50);
+  background-color: rgba(107, 196, 221, 0.573);
 }
 .btn{
-  max-width: 8rem;
+  max-width: 9rem;
 }
 </style>

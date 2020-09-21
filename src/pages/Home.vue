@@ -31,7 +31,7 @@
             aria-describedby="helpId"
           />
       </div>
-          <button type="submit" class="btn btn-success">
+          <button type="submit" class="btn btn-primary">
           Post Blog
         </button>
       </form>

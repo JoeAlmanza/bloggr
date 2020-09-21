@@ -11,7 +11,7 @@
         />
       </div>
       <div>
-        <h3 class="text-light">loggrrr</h3>
+        <h3>loggrrr</h3>
       </div>
     </router-link>
     <button

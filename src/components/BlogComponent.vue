@@ -29,7 +29,7 @@ export default {
 <style scoped>
 .card{
   border: 1px solid rgb(0, 0, 0);
-  background-color: rgb(0, 173, 181, .3);
+  background-color: #6bc4dd92;
 }
 
 .card:hover{
