@@ -11,7 +11,7 @@
           <i class="fa fa-times-circle-o" aria-hidden="true" @click="deleteBlog" v-if="this.blog.creatorEmail == this.$auth.userInfo.name"></i></h5>
         <h3 class="text-info m-0">{{blog.title}} </h3> 
         <img class="my-3" :src="blog.imgUrl" alt="">
-        <p class="text-info">By: {{blog.creatorEmail}}</p>
+        <p class="author">By: {{blog.creatorEmail}}</p>
         <p class="text-light">{{blog.body}}</p>
         <form class="form d-flex flex-column align-items-center" @submit.prevent="editBlog" v-if="editToggle">
           <input
@@ -84,9 +84,6 @@ export default {
       activeComments(){
         return this.$store.state.activeComments
       },
-      isCreator(){
-        return this.$store.state.profile.email == this.blog.creatorEmail
-      }
     },
   mounted(){
     this.$store.dispatch("getActiveBlog", this.$route.params.blogId),
@@ -133,5 +130,8 @@ img{
 }
 .btn{
   max-width: 9rem;
+}
+.author{
+  color: rgb(107, 196, 221);
 }
 </style>
