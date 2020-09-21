@@ -4,3 +4,8 @@ module.exports = {
     ? '/bloggr/'
     : '/'
 };
+
+module.exports = {
+  outputDir: "../client",
+  productionSourceMap: false
+};
