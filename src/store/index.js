@@ -33,9 +33,10 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async getProfile({ commit }) {
+    //---------- BLOG ACTIONS //
+    async getProfile({commit}) {
       try {
-        let res = await api.get("profile");
+        let res = await api.get("/profile");
         commit("setProfile", res.data)
       } catch (error) {
         console.error(error);
@@ -49,10 +50,10 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
-    async createBlog({commit}, blogData) {
+    async createBlog({dispatch}, blogData) {
       try {
         let res = await api.post("blogs", blogData)
-        commit("setBlogs", [...this.state.blogs, res.data])
+        dispatch("getAllBlogs")
         router.push({path: "/blog/" + res.data.id})
       } catch (error) {
         console.error(error);
@@ -84,6 +85,7 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
+    //----------COMMENT ACTIONS
     async getComments({commit}, blogId){
       try {
         let res = await api.get("blogs/" + blogId + "/comments")
@@ -92,7 +94,7 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
-    async addComment({commit, dispatch}, commentData) {
+    async addComment({dispatch}, commentData) {
       try {
         let res = await api.post("comments" , commentData)
         dispatch("getComments", res.data.blog)
@@ -100,9 +102,8 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
-    async editComment({commit, dispatch}, commentData) {
+    async editComment({dispatch}, commentData) {
       try {
-        console.log(commentData);
         let res = await api.put("comments/" + commentData.id, commentData)
         dispatch("getComments", res.data.blog)
       } catch (error) {

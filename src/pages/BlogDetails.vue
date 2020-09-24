@@ -82,7 +82,7 @@ export default {
         return this.$store.state.activeBlog
       },
       activeComments(){
-        return this.$store.state.activeComments
+        return this.$store.state.activeComments || []
       },
     },
   mounted(){

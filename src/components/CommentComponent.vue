@@ -34,7 +34,8 @@ export default {
   props: ["commentProp"],
   data(){
     return {
-      commentData: {}, editToggle: false,
+      commentData: {}, 
+      editToggle: false,
     }
   },
   computed:{
